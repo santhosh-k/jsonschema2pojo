@@ -110,6 +110,10 @@ public class Jackson2Annotator extends AbstractAnnotator {
         if (propertyNode.has("description")) {
             field.annotate(JsonPropertyDescription.class).param("value", propertyNode.get("description").asText());
         }
+        
+        if (propertyNode.has("piiFree")) {
+            field.annotate(PiiFree.class).param("enabled", propertyNode.get("piiFree").asBoolean());
+        }
     }
 
     @Override

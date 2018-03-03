@@ -98,6 +98,10 @@ public class Jackson1Annotator extends AbstractAnnotator {
             field.annotate(JsonView.class).param(
                     "value", field.type().owner().ref(propertyNode.get("javaJsonView").asText()));
         }
+        
+        if (propertyNode.has("piiFree")) {
+            field.annotate(PiiFree.class).param("enabled", propertyNode.get("piiFree").asBoolean());
+        }
     }
 
     @Override

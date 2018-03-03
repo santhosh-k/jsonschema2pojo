@@ -47,6 +47,9 @@ public class GsonAnnotator extends AbstractAnnotator {
     public void propertyField(JFieldVar field, JDefinedClass clazz, String propertyName, JsonNode propertyNode) {
         field.annotate(SerializedName.class).param("value", propertyName);
         field.annotate(Expose.class);
+        if (propertyNode.has("piiFree")) {
+            field.annotate(PiiFree.class).param("enabled", propertyNode.get("piiFree").asBoolean());
+        }
     }
 
     @Override
